@@ -22,14 +22,12 @@ class _InputPageState extends State<InputPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('BMI CALCULATOR'),
-        backgroundColor: Colors.lightGreen,
       ),
       body: Center(
         child: Text('Body Text'),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        backgroundColor: Colors.lightGreen,
       ),
     );
   }
