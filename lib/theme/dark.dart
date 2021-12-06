@@ -1,20 +1,25 @@
 part of themes;
 
-class DarkThemeData extends LightThemeData
+abstract class DarkThemeData
 {
-  static final Brightness brt = Brightness.dark;
+  static ColorScheme scheme = ColorScheme(
+      primary: Color(0xff1d1f33),
+      primaryVariant: Color(0xff8E8E99),
+      onPrimary: Color(0xffFFFFFF),
 
-  static final ThemeData theme = ThemeData(
-    brightness: brt,
+      secondary: Color(0xff101427),
+      secondaryVariant: Color(0xff1D1F33),
+      onSecondary: Color(0xff0C1234),
 
-    primaryColor: Colors.indigo,
-    accentColor: Colors.black87,
+      surface: Color(0xffEA1556),
+      onSurface: Color(0xffFFFFFF),
 
-    appBarTheme: AppBarTheme(
-      brightness: brt,
-      color: Colors.indigo,
-    ),
+      background: Color(0xff090C22),
+      onBackground: Color(0xffFFFFFF),
 
-    fontFamily: 'Comic Sans',
+      error: Color(0xff750c0c),
+      onError: Color(0xfff7fff5),
+
+      brightness: Brightness.dark
   );
 }
