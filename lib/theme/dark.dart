@@ -22,4 +22,21 @@ abstract class DarkThemeData
 
       brightness: Brightness.dark
   );
+
+  static ThemeHolder getThemeHolder()
+  {
+    return new ThemeHolder(
+        theme: ThemeData.dark().copyWith(
+          primaryColor: scheme.primary,
+          accentColor: scheme.secondary,
+          scaffoldBackgroundColor: scheme.background,
+
+          appBarTheme: AppBarTheme(
+            color: scheme.primary,
+          ),
+        ),
+
+        scheme: scheme
+    );
+  }
 }
