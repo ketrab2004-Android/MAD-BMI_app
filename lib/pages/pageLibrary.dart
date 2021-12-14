@@ -12,3 +12,4 @@ import 'package:bmi_calculator/enum/enumLibrary.dart' as Enums;
 import 'package:bmi_calculator/const/constLibrary.dart' as Constants;
 
 part 'inputPage.dart';
+part 'resultPage.dart';
