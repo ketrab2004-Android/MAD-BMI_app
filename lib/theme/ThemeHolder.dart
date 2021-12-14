@@ -42,6 +42,9 @@ class ThemeHolder
   double ageAgeSize = 40.0;
   FontWeight ageAgeWeight = FontWeight.w700;
 
+  double bottomHeight = 64.0;
+  double bottomTextSize = 16.0;
+
 
 
 
