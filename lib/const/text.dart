@@ -21,4 +21,5 @@ class Texts
   String age = "Age";
 
   String calculateButton = "Calculate your BMI";
+  String recalculateButton = "Re-calculate your BMI";
 }
