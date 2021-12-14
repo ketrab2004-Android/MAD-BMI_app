@@ -12,7 +12,7 @@ abstract class DarkThemeData
       onSecondary: Color(0xff0C1234),
 
       surface: Color(0xffEA1556),
-      onSurface: Color(0xffFFFFFF),
+      onSurface: Color(0xffff5f91),
 
       background: Color(0xff090C22),
       onBackground: Color(0xffFFFFFF),
