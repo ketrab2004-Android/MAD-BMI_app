@@ -26,7 +26,8 @@ class _InputPageState extends State<InputPage> {
         child: ListView(
           physics: new NeverScrollableScrollPhysics(),
           children: [
-            Padding( // male & female
+            Padding(
+              // male & female
               padding: EdgeInsets.all(theme.paddingSize * 2.0),
               child: Row(
                 children: <Widget>[
@@ -35,21 +36,20 @@ class _InputPageState extends State<InputPage> {
                     child: InkWell(
                       onTap: () {
                         if (!_isMale) {
-                          setState(() => _isMale = true );
+                          setState(() => _isMale = true);
                         }
                       },
-
                       radius: theme.inkwellRadius,
                       splashColor: theme.scheme.primaryVariant,
-
                       customBorder: RoundedRectangleBorder(
                         borderRadius: theme.borderRadius,
                       ),
-
                       child: Ink(
                         decoration: BoxDecoration(
                           borderRadius: theme.borderRadius,
-                          color: _isMale ? theme.scheme.primary : theme.scheme.secondary,
+                          color: _isMale
+                              ? theme.scheme.primary
+                              : theme.scheme.secondary,
                         ),
                         child: Padding(
                           padding: theme.insets,
@@ -58,17 +58,19 @@ class _InputPageState extends State<InputPage> {
                               Icon(
                                 Icons.male,
                                 size: theme.genderIconSize,
-                                color: _isMale ? theme.scheme.onPrimary : theme.scheme.primaryVariant,
+                                color: _isMale
+                                    ? theme.scheme.onPrimary
+                                    : theme.scheme.primaryVariant,
                               ),
                               Text(
                                 texts.genderMale,
-
                                 style: TextStyle(
-                                  color: _isMale ? theme.scheme.onPrimary : theme.scheme.primaryVariant,
+                                  color: _isMale
+                                      ? theme.scheme.onPrimary
+                                      : theme.scheme.primaryVariant,
                                   fontSize: theme.genderFontSize,
                                   fontWeight: theme.genderFontWeight,
                                 ),
-
                                 locale: texts.locale,
                               ),
                             ],
@@ -83,21 +85,20 @@ class _InputPageState extends State<InputPage> {
                     child: InkWell(
                       onTap: () {
                         if (_isMale) {
-                          setState(() => _isMale = false );
+                          setState(() => _isMale = false);
                         }
                       },
-
                       radius: theme.inkwellRadius,
                       splashColor: theme.scheme.primaryVariant,
-
                       customBorder: RoundedRectangleBorder(
                         borderRadius: theme.borderRadius,
                       ),
-
                       child: Ink(
                         decoration: BoxDecoration(
                           borderRadius: theme.borderRadius,
-                          color: !_isMale ? theme.scheme.primary : theme.scheme.secondary,
+                          color: !_isMale
+                              ? theme.scheme.primary
+                              : theme.scheme.secondary,
                         ),
                         child: Padding(
                           padding: theme.insets,
@@ -106,17 +107,19 @@ class _InputPageState extends State<InputPage> {
                               Icon(
                                 Icons.female,
                                 size: theme.genderIconSize,
-                                color: !_isMale ? theme.scheme.onPrimary : theme.scheme.primaryVariant,
+                                color: !_isMale
+                                    ? theme.scheme.onPrimary
+                                    : theme.scheme.primaryVariant,
                               ),
                               Text(
                                 texts.genderFemale,
-
                                 style: TextStyle(
-                                  color: !_isMale ? theme.scheme.onPrimary : theme.scheme.primaryVariant,
+                                  color: !_isMale
+                                      ? theme.scheme.onPrimary
+                                      : theme.scheme.primaryVariant,
                                   fontSize: theme.genderFontSize,
                                   fontWeight: theme.genderFontWeight,
                                 ),
-
                                 locale: texts.locale,
                               ),
                             ],
@@ -129,16 +132,17 @@ class _InputPageState extends State<InputPage> {
               ),
             ), // male & female
             Padding( // height selector
-              padding: EdgeInsets.only(left: theme.paddingSize * 2.0, right: theme.paddingSize * 2.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: theme.borderRadius,
-                  color: theme.scheme.secondary,
-                ),
+              padding: EdgeInsets.only(
+                left: theme.paddingSize * 2.0,
+                right: theme.paddingSize * 2.0,
+              ),
+              child: Widgets.StyledContainer(
+                theme: theme,
                 child: SizedBox(
                   height: 175,
                   child: Padding(
-                    padding: EdgeInsets.only(top: theme.paddingSize, bottom: theme.paddingSize),
+                    padding: EdgeInsets.only(
+                        top: theme.paddingSize, bottom: theme.paddingSize),
                     child: Column(
                       children: <Widget>[
                         Expanded(
@@ -189,12 +193,14 @@ class _InputPageState extends State<InputPage> {
                             child: SliderTheme(
                               data: SliderThemeData(
                                 thumbColor: theme.scheme.surface,
-                                thumbShape: RoundSliderThumbShape(enabledThumbRadius: theme.heightSliderThumbRadius),
+                                thumbShape: RoundSliderThumbShape(
+                                  enabledThumbRadius: theme.heightSliderThumbRadius,
+                                ),
                                 overlayColor: theme.scheme.surface.withOpacity(theme.heightSliderOverlayOpacity),
 
                                 trackHeight: theme.heightSliderTrackHeight,
                                 //trackShape: SliderTrackShape, // too much effort ¯\_(ツ)_/¯
-                                activeTrackColor: theme.scheme.onSurface,
+                                activeTrackColor: theme.scheme.onPrimary,
                                 inactiveTrackColor: theme.scheme.primaryVariant,
                               ),
                               child: Slider(
@@ -202,9 +208,8 @@ class _InputPageState extends State<InputPage> {
                                 min: 147.0,
                                 max: 272.0,
                                 divisions: 272 - 147,
-
                                 onChanged: (double val) {
-                                  setState(() => _height = val );
+                                  setState(() => _height = val);
                                 },
                               ),
                             ),
@@ -216,17 +221,14 @@ class _InputPageState extends State<InputPage> {
                 ),
               ),
             ), // height selector
-            Padding( // weight & age
+            Padding(// weight & age
               padding: EdgeInsets.all(theme.paddingSize * 2.0),
               child: Row(
                 children: <Widget>[
                   Expanded(
                     flex: theme.weageFlex,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: theme.borderRadius,
-                        color: theme.scheme.secondary,
-                      ),
+                    child: Widgets.StyledContainer(
+                      theme: theme,
                       child: Padding(
                         padding: theme.insets,
                         child: Column(
@@ -248,7 +250,8 @@ class _InputPageState extends State<InputPage> {
                             ),
                             Row(
                               children: <Widget>[
-                                Expanded( // sub
+                                Expanded(
+                                  // sub
                                   flex: theme.weageButtonFlex,
                                   child: TextButtonTheme(
                                     data: TextButtonThemeData(
@@ -256,13 +259,14 @@ class _InputPageState extends State<InputPage> {
                                         primary: theme.scheme.primaryVariant,
                                         backgroundColor: theme.scheme.primary,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(theme.weageButtonRadius),
+                                          borderRadius: BorderRadius.circular(
+                                              theme.weageButtonRadius),
                                         ),
                                       ),
                                     ),
                                     child: TextButton(
                                       onPressed: () {
-                                        setState(() => _weight-- );
+                                        setState(() => _weight--);
                                       },
                                       child: Icon(
                                         Icons.remove,
@@ -272,7 +276,8 @@ class _InputPageState extends State<InputPage> {
                                   ),
                                 ), // sub
                                 Spacer(flex: theme.weageButtonSpacerFlex),
-                                Expanded( // add
+                                Expanded(
+                                  // add
                                   flex: theme.weageButtonFlex,
                                   child: TextButtonTheme(
                                     data: TextButtonThemeData(
@@ -280,13 +285,14 @@ class _InputPageState extends State<InputPage> {
                                         primary: theme.scheme.primaryVariant,
                                         backgroundColor: theme.scheme.primary,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(theme.weageButtonRadius),
+                                          borderRadius: BorderRadius.circular(
+                                              theme.weageButtonRadius),
                                         ),
                                       ),
                                     ),
                                     child: TextButton(
                                       onPressed: () {
-                                        setState(() => _weight++ );
+                                        setState(() => _weight++);
                                       },
                                       child: Icon(
                                         Icons.add,
@@ -305,11 +311,8 @@ class _InputPageState extends State<InputPage> {
                   Spacer(flex: theme.weageSpacerFlex),
                   Expanded(
                     flex: theme.weageFlex,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: theme.borderRadius,
-                        color: theme.scheme.secondary,
-                      ),
+                    child: Widgets.StyledContainer(
+                      theme: theme,
                       child: Padding(
                         padding: theme.insets,
                         child: Column(
@@ -331,7 +334,8 @@ class _InputPageState extends State<InputPage> {
                             ),
                             Row(
                               children: <Widget>[
-                                Expanded( // sub
+                                Expanded(
+                                  // sub
                                   flex: theme.weageButtonFlex,
                                   child: TextButtonTheme(
                                     data: TextButtonThemeData(
@@ -339,13 +343,14 @@ class _InputPageState extends State<InputPage> {
                                         primary: theme.scheme.primaryVariant,
                                         backgroundColor: theme.scheme.primary,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(theme.weageButtonRadius),
+                                          borderRadius: BorderRadius.circular(
+                                              theme.weageButtonRadius),
                                         ),
                                       ),
                                     ),
                                     child: TextButton(
                                       onPressed: () {
-                                        setState(() => _age-- );
+                                        setState(() => _age--);
                                       },
                                       child: Icon(
                                         Icons.remove,
@@ -355,7 +360,8 @@ class _InputPageState extends State<InputPage> {
                                   ),
                                 ), // sub
                                 Spacer(flex: theme.weageButtonSpacerFlex),
-                                Expanded( // add
+                                Expanded(
+                                  // add
                                   flex: theme.weageButtonFlex,
                                   child: TextButtonTheme(
                                     data: TextButtonThemeData(
@@ -363,13 +369,14 @@ class _InputPageState extends State<InputPage> {
                                         primary: theme.scheme.primaryVariant,
                                         backgroundColor: theme.scheme.primary,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(theme.weageButtonRadius),
+                                          borderRadius: BorderRadius.circular(
+                                              theme.weageButtonRadius),
                                         ),
                                       ),
                                     ),
                                     child: TextButton(
                                       onPressed: () {
-                                        setState(() => _age++ );
+                                        setState(() => _age++);
                                       },
                                       child: Icon(
                                         Icons.add,
@@ -389,6 +396,27 @@ class _InputPageState extends State<InputPage> {
               ),
             ), // weight & age
           ],
+        ),
+      ),
+      bottomNavigationBar: Container                                                                                                                                                                 (
+        height: theme.bottomHeight,
+        child: InkWell(
+          onTap: () {},
+          radius: theme.inkwellRadius,
+          splashColor: theme.scheme.onSurface,
+          child: Ink(
+            decoration: BoxDecoration(
+              color: theme.scheme.surface,
+            ),
+            child: Center(
+              child: Text(
+                texts.calculateButton,
+                style: TextStyle(
+                  fontSize: theme.bottomTextSize,
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );
