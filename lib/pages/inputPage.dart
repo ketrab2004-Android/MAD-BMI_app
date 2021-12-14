@@ -6,7 +6,7 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  bool _isMale = true;
+  Enums.Gender _gender = Enums.Gender.male;
   double _height = 180;
   int _weight = 74;
   int _age = 19;
@@ -26,55 +26,45 @@ class _InputPageState extends State<InputPage> {
         child: ListView(
           physics: new NeverScrollableScrollPhysics(),
           children: [
-            Padding(
-              // male & female
+            Padding(// male & female
               padding: EdgeInsets.all(theme.paddingSize * 2.0),
               child: Row(
                 children: <Widget>[
                   Expanded(
                     flex: theme.genderFlex,
-                    child: InkWell(
+                    child: Widgets.InkyContainer(
+                      theme: theme,
+                      colour: _gender == Enums.Gender.male ? theme.scheme.primary : null, // when null it picks the default
                       onTap: () {
-                        if (!_isMale) {
-                          setState(() => _isMale = true);
+                        if (_gender != Enums.Gender.male) {
+                          setState(() {
+                            _gender = Enums.Gender.male;
+                          });
                         }
                       },
-                      radius: theme.inkwellRadius,
-                      splashColor: theme.scheme.primaryVariant,
-                      customBorder: RoundedRectangleBorder(
-                        borderRadius: theme.borderRadius,
-                      ),
-                      child: Ink(
-                        decoration: BoxDecoration(
-                          borderRadius: theme.borderRadius,
-                          color: _isMale
-                              ? theme.scheme.primary
-                              : theme.scheme.secondary,
-                        ),
-                        child: Padding(
-                          padding: theme.insets,
-                          child: Column(
-                            children: <Widget>[
-                              Icon(
-                                Icons.male,
-                                size: theme.genderIconSize,
-                                color: _isMale
+                      child: Padding(
+                        padding: theme.insets,
+                        child: Column(
+                          children: <Widget>[
+                            Icon(
+                              Icons.male,
+                              size: theme.genderIconSize,
+                              color: _gender == Enums.Gender.male
+                                  ? theme.scheme.onPrimary
+                                  : theme.scheme.primaryVariant,
+                            ),
+                            Text(
+                              texts.genderMale,
+                              style: TextStyle(
+                                color: _gender == Enums.Gender.male
                                     ? theme.scheme.onPrimary
                                     : theme.scheme.primaryVariant,
+                                fontSize: theme.genderFontSize,
+                                fontWeight: theme.genderFontWeight,
                               ),
-                              Text(
-                                texts.genderMale,
-                                style: TextStyle(
-                                  color: _isMale
-                                      ? theme.scheme.onPrimary
-                                      : theme.scheme.primaryVariant,
-                                  fontSize: theme.genderFontSize,
-                                  fontWeight: theme.genderFontWeight,
-                                ),
-                                locale: texts.locale,
-                              ),
-                            ],
-                          ),
+                              locale: texts.locale,
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -82,48 +72,39 @@ class _InputPageState extends State<InputPage> {
                   Spacer(flex: theme.genderSpacerFlex),
                   Expanded(
                     flex: theme.genderFlex,
-                    child: InkWell(
+                    child: Widgets.InkyContainer(
+                      theme: theme,
+                      colour: _gender == Enums.Gender.female ? theme.scheme.primary : null, // when null it picks the default
                       onTap: () {
-                        if (_isMale) {
-                          setState(() => _isMale = false);
+                        if (_gender != Enums.Gender.female) {
+                          setState(() {
+                            _gender = Enums.Gender.female;
+                          });
                         }
                       },
-                      radius: theme.inkwellRadius,
-                      splashColor: theme.scheme.primaryVariant,
-                      customBorder: RoundedRectangleBorder(
-                        borderRadius: theme.borderRadius,
-                      ),
-                      child: Ink(
-                        decoration: BoxDecoration(
-                          borderRadius: theme.borderRadius,
-                          color: !_isMale
-                              ? theme.scheme.primary
-                              : theme.scheme.secondary,
-                        ),
-                        child: Padding(
-                          padding: theme.insets,
-                          child: Column(
-                            children: <Widget>[
-                              Icon(
-                                Icons.female,
-                                size: theme.genderIconSize,
-                                color: !_isMale
+                      child: Padding(
+                        padding: theme.insets,
+                        child: Column(
+                          children: <Widget>[
+                            Icon(
+                              Icons.female,
+                              size: theme.genderIconSize,
+                              color: _gender == Enums.Gender.female
+                                  ? theme.scheme.onPrimary
+                                  : theme.scheme.primaryVariant,
+                            ),
+                            Text(
+                              texts.genderFemale,
+                              style: TextStyle(
+                                color: _gender == Enums.Gender.female
                                     ? theme.scheme.onPrimary
                                     : theme.scheme.primaryVariant,
+                                fontSize: theme.genderFontSize,
+                                fontWeight: theme.genderFontWeight,
                               ),
-                              Text(
-                                texts.genderFemale,
-                                style: TextStyle(
-                                  color: !_isMale
-                                      ? theme.scheme.onPrimary
-                                      : theme.scheme.primaryVariant,
-                                  fontSize: theme.genderFontSize,
-                                  fontWeight: theme.genderFontWeight,
-                                ),
-                                locale: texts.locale,
-                              ),
-                            ],
-                          ),
+                              locale: texts.locale,
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -250,55 +231,29 @@ class _InputPageState extends State<InputPage> {
                             ),
                             Row(
                               children: <Widget>[
-                                Expanded(
-                                  // sub
+                                Expanded(// sub
                                   flex: theme.weageButtonFlex,
-                                  child: TextButtonTheme(
-                                    data: TextButtonThemeData(
-                                      style: TextButton.styleFrom(
-                                        primary: theme.scheme.primaryVariant,
-                                        backgroundColor: theme.scheme.primary,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                              theme.weageButtonRadius),
-                                        ),
-                                      ),
-                                    ),
-                                    child: TextButton(
-                                      onPressed: () {
-                                        setState(() => _weight--);
-                                      },
-                                      child: Icon(
-                                        Icons.remove,
-                                        color: theme.scheme.onPrimary,
-                                      ),
-                                    ),
+                                  child: Widgets.SquareButton(
+                                    theme: theme,
+                                    icon: Icons.remove,
+                                    onPressed: () {
+                                      setState(() {
+                                        _weight--;
+                                      });
+                                    },
                                   ),
                                 ), // sub
                                 Spacer(flex: theme.weageButtonSpacerFlex),
-                                Expanded(
-                                  // add
+                                Expanded(// add
                                   flex: theme.weageButtonFlex,
-                                  child: TextButtonTheme(
-                                    data: TextButtonThemeData(
-                                      style: TextButton.styleFrom(
-                                        primary: theme.scheme.primaryVariant,
-                                        backgroundColor: theme.scheme.primary,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                              theme.weageButtonRadius),
-                                        ),
-                                      ),
-                                    ),
-                                    child: TextButton(
-                                      onPressed: () {
-                                        setState(() => _weight++);
-                                      },
-                                      child: Icon(
-                                        Icons.add,
-                                        color: theme.scheme.onPrimary,
-                                      ),
-                                    ),
+                                  child: Widgets.SquareButton(
+                                    theme: theme,
+                                    icon: Icons.add,
+                                    onPressed: () {
+                                      setState(() {
+                                        _weight++;
+                                      });
+                                    },
                                   ),
                                 ), // add
                               ],
@@ -334,55 +289,30 @@ class _InputPageState extends State<InputPage> {
                             ),
                             Row(
                               children: <Widget>[
-                                Expanded(
-                                  // sub
+                                Expanded(// sub
                                   flex: theme.weageButtonFlex,
-                                  child: TextButtonTheme(
-                                    data: TextButtonThemeData(
-                                      style: TextButton.styleFrom(
-                                        primary: theme.scheme.primaryVariant,
-                                        backgroundColor: theme.scheme.primary,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                              theme.weageButtonRadius),
-                                        ),
-                                      ),
-                                    ),
-                                    child: TextButton(
-                                      onPressed: () {
-                                        setState(() => _age--);
-                                      },
-                                      child: Icon(
-                                        Icons.remove,
-                                        color: theme.scheme.onPrimary,
-                                      ),
-                                    ),
+                                  child: Widgets.SquareButton(
+                                    theme: theme,
+                                    icon: Icons.remove,
+                                    onPressed: () {
+                                      setState(() {
+                                        _age--;
+                                      });
+                                    },
                                   ),
                                 ), // sub
                                 Spacer(flex: theme.weageButtonSpacerFlex),
                                 Expanded(
                                   // add
                                   flex: theme.weageButtonFlex,
-                                  child: TextButtonTheme(
-                                    data: TextButtonThemeData(
-                                      style: TextButton.styleFrom(
-                                        primary: theme.scheme.primaryVariant,
-                                        backgroundColor: theme.scheme.primary,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                              theme.weageButtonRadius),
-                                        ),
-                                      ),
-                                    ),
-                                    child: TextButton(
-                                      onPressed: () {
-                                        setState(() => _age++);
-                                      },
-                                      child: Icon(
-                                        Icons.add,
-                                        color: theme.scheme.onPrimary,
-                                      ),
-                                    ),
+                                  child: Widgets.SquareButton(
+                                    theme: theme,
+                                    icon: Icons.add,
+                                    onPressed: () {
+                                      setState(() {
+                                        _age++;
+                                      });
+                                    },
                                   ),
                                 ), // add
                               ],
