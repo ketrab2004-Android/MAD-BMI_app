@@ -328,22 +328,24 @@ class _InputPageState extends State<InputPage> {
           ],
         ),
       ),
-      bottomNavigationBar: Container                                                                                                                                                                 (
+      bottomNavigationBar: Container(
         height: theme.bottomHeight,
-        child: InkWell(
-          onTap: () {},
-          radius: theme.inkwellRadius,
-          splashColor: theme.scheme.onSurface,
-          child: Ink(
-            decoration: BoxDecoration(
-              color: theme.scheme.surface,
-            ),
-            child: Center(
-              child: Text(
-                texts.calculateButton,
-                style: TextStyle(
-                  fontSize: theme.bottomTextSize,
-                ),
+        child: Widgets.InkyContainer(
+          theme: theme,
+          colour: theme.scheme.surface,
+          splashColour: theme.scheme.onSurface,
+          borderRadius: BorderRadius.zero,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ResultPage()),
+            );
+          },
+          child: Center(
+            child: Text(
+              texts.calculateButton,
+              style: TextStyle(
+                fontSize: theme.bottomTextSize,
               ),
             ),
           ),
