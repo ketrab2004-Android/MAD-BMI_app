@@ -6,6 +6,7 @@ class InkyContainer extends StatelessWidget {
     this.child,
     this.splashColour,
     this.colour, // default is from this.theme.scheme
+    this.borderRadius,
     this.onTap,
   });
 
@@ -13,6 +14,7 @@ class InkyContainer extends StatelessWidget {
   final Widget child;
   final Color colour;
   final Color splashColour;
+  final BorderRadiusGeometry borderRadius;
 
   final void Function() onTap; // anonymous function
 
@@ -23,11 +25,11 @@ class InkyContainer extends StatelessWidget {
       radius: theme.inkwellRadius,
       splashColor: splashColour ?? theme.scheme.primaryVariant,
       customBorder: RoundedRectangleBorder(
-        borderRadius: theme.borderRadius,
+        borderRadius: borderRadius ?? theme.borderRadius,
       ),
       child: Ink(
         decoration: BoxDecoration(
-          borderRadius: theme.borderRadius,
+          borderRadius: borderRadius ?? theme.borderRadius,
           color: colour ?? theme.scheme.secondary,
         ),
         child: child,
