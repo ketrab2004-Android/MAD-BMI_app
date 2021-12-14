@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:bmi_calculator/widget/widgetLibrary.dart' as Widgets;
 import 'package:bmi_calculator/theme/themeLibrary.dart' as Themes;
 
+import 'package:bmi_calculator/enum/enumLibrary.dart' as Enums;
+
 import 'package:bmi_calculator/const/constLibrary.dart' as Constants;
 
 part 'inputPage.dart';
